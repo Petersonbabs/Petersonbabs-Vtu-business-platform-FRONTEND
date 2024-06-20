@@ -25,7 +25,7 @@ import { assets } from '../../../assets/assets'
   
   const DashboardNav = ()=> {
 
-    const {image, user} = useAuthContext()
+    const { user} = useAuthContext()
 
     return (
       <Disclosure as="nav" className="shadow">
@@ -74,7 +74,7 @@ import { assets } from '../../../assets/assets'
                 <div className="absolute inset-y-0 right-0 flex gap-4 items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
                   <button
                     type="button"
-                    className="relative rounded-full  p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
+                    className="relative rounded-full  p-1 text-gray-400 focus-scale-110 border focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
                   >
                     <span className="absolute -inset-1.5" />
                     <span className="sr-only">View notifications</span>
@@ -89,7 +89,7 @@ import { assets } from '../../../assets/assets'
                         <span className="sr-only">Open user menu</span>
                         <img
                           className="h-8 w-8 rounded-full"
-                          src={assets.userImage}
+                          src={user.profilePic}
                           alt=""
                         />
                       </MenuButton>

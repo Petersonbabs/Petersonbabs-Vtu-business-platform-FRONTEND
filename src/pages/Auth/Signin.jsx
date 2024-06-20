@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link, NavLink } from 'react-router-dom';
-import logoImage from '../../assets/logoA. removebg-preview (1).png';
 import { assets } from '../../assets/assets';
 
 const Signin = () => {

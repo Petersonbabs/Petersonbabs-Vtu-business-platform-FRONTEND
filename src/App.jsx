@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   BrowserRouter as Router,
   Routes,
@@ -13,31 +13,42 @@ import ForgotPassword from "./pages/Auth/ForgotPassword ";
 import CreatePin from "./pages/Auth/CreatePin";
 import RoutesLink from "./pages/Dashboard/RoutesLink";
 import AuthProvider, { useAuthContext } from "./contexts/AuthContext";
-
+import MessagesModal, { openModal } from "./component/common/MessagesModal";
+import PopupProvider from "./contexts/Popup";
 
 function App() {
   // const { user } = useAuthContext();
-  const user = {name: 'ghj'}
+  const user = { name: "ghj" };
 
   return (
-    <AuthProvider>
-      <BrowserRouter>
-        {!user ? (
-          <Routes>
-            <Route path="*" element={<RoutesLink />} />
-          </Routes>
-        ) : (
-          <Routes>
-            <Route path="/" element={<Homepage />} />
-            <Route path="/signin" element={<Signin />} />
-            <Route path="/signup" element={<Signup />} />
-            <Route path="/forgotPassword" element={<ForgotPassword />} />
-            <Route path="/createPin" element={<CreatePin />} />
-            <Route path="*" element={<NotFoundPage />} />
-          </Routes>
-        )}
-      </BrowserRouter>
-    </AuthProvider>
+    <BrowserRouter>
+      <AuthProvider>
+        <PopupProvider>
+          {!user ? (
+            <>
+              <MessagesModal />
+              <Routes>
+                <Route path="*" element={<RoutesLink />} />
+              </Routes>
+            </>
+          ) : (
+            <>
+              {/* <MessagesModal content={'ellother hth heve hehhejdjdhh dhhd dhhd hjhd '}  /> */}
+
+              {/* <button onClick={openModal}>call</button> */}
+              <Routes>
+                <Route path="/" element={<Homepage />} />
+                <Route path="/signin" element={<Signin />} />
+                <Route path="/signup" element={<Signup />} />
+                <Route path="/forgotPassword" element={<ForgotPassword />} />
+                <Route path="/createPin" element={<CreatePin />} />
+                <Route path="*" element={<NotFoundPage />} />
+              </Routes>
+            </>
+          )}
+        </PopupProvider>
+      </AuthProvider>
+    </BrowserRouter>
   );
 }
 

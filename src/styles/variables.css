@@ -2,6 +2,9 @@
 
     /* color */
     --green: #4ade80;
+    --info: #0dcaf0;
+    --danger: #dc3545;
+    --warning: #ffc107;
     --light-green: rgb(230, 255, 230);
     --lighter-green: rgb(239, 252, 239);
 

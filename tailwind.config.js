@@ -13,8 +13,17 @@ module.exports = {
       },
 
       margin: {
-        auto: 'auto'
+        auto: 'auto',
+        full: '100%'
+      },
+
+      stroke: {
+        warning: '#ffc107',
+        error: '#dc3545',
+        success: '#4ade80',
+        info: '#0dcaf0'
       }
+
     },
   },
   plugins: [],
