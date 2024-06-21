@@ -15,6 +15,7 @@ import RoutesLink from "./pages/Dashboard/RoutesLink";
 import AuthProvider, { useAuthContext } from "./contexts/AuthContext";
 import MessagesModal, { openModal } from "./component/common/MessagesModal";
 import PopupProvider from "./contexts/Popup";
+import VerifyAccount from "./pages/Auth/VerifyEmail";
 
 function App() {
   // const { user } = useAuthContext();
@@ -40,6 +41,7 @@ function App() {
                 <Route path="/" element={<Homepage />} />
                 <Route path="/signin" element={<Signin />} />
                 <Route path="/signup" element={<Signup />} />
+                <Route path="/verify-email/:email" element={<VerifyAccount />} />
                 <Route path="/forgotPassword" element={<ForgotPassword />} />
                 <Route path="/createPin" element={<CreatePin />} />
                 <Route path="*" element={<NotFoundPage />} />
