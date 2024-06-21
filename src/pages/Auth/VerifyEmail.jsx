@@ -18,6 +18,7 @@ const VerifyEmail = () => {
   );
   
   const decryptedEmail = decryptedBytes.toString(cryptoJs.enc.Utf8);
+  console.log(decryptedEmail)
 
   const handleOpenEmail = () => {
     window.location.href = `mailto:${decryptedEmail}`;

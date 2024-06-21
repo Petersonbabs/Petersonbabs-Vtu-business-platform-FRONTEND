@@ -3,11 +3,14 @@ import { createContext, useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import cryptoJs from "crypto-js";
 
+
 const AuthContext = createContext();
 
 export const useAuthContext = () => {
   return useContext(AuthContext);
 };
+
+
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(JSON.parse(localStorage.getItem("user")));
@@ -30,7 +33,7 @@ const AuthProvider = ({ children }) => {
 
     try {
       const response = await axios.post(`${apiUrl}/auth/signup`, formData);
-
+      console.log(response)
       const data = response.data;
 
       if (data.status == "success") {
@@ -39,13 +42,14 @@ const AuthProvider = ({ children }) => {
           formData.email,
           import.meta.env.VITE_EMAIL_SECRET
         ).toString();
-
+        
         navigate(`/verify-email/${encodeURIComponent(encryptedEmail)}`);
       }
     } catch (error) {
       console.log(error);
       alert(error.response.data.message);
     } finally {
+      console.log("done!");
       setIsLoading(false);
     }
   };

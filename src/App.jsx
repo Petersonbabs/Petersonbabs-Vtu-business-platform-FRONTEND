@@ -20,6 +20,7 @@ import VerifyAccount from "./pages/Auth/VerifyEmail";
 function App() {
   // const { user } = useAuthContext();
   const user = { name: "ghj" };
+  alert('wel')
 
   return (
     <BrowserRouter>
