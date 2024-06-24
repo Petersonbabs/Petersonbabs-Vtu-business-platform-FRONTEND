@@ -131,19 +131,7 @@ const DashboardNav = () => {
                           </a>
                         )}
                       </MenuItem>
-                      <MenuItem>
-                        {({ focus }) => (
-                          <a
-                            href="#"
-                            className={classNames(
-                              focus ? "bg-gray-100" : "",
-                              "block px-4 py-2 text-sm text-gray-700"
-                            )}
-                          >
-                            Sign out
-                          </a>
-                        )}
-                      </MenuItem>
+                      
                       <MenuItem>
                         <button className="hover:bg-gray-100 w-full text-start block px-4 py-2 text-sm text-gray-700" onClick={logout}>
                           Logout

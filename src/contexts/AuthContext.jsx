@@ -51,7 +51,6 @@ const AuthProvider = ({ children }) => {
 
     try {
       const response = await axios.post(`${apiUrl}/auth/signup`, formData);
-      console.log(response);
       const data = response.data;
 
       if (data.status == "success") {
@@ -62,6 +61,7 @@ const AuthProvider = ({ children }) => {
         ).toString();
 
         navigate(`/verify-email/${encodeURIComponent(encryptedEmail)}`);
+        window.location.reload()
         alert(data.message);
       }
     } catch (error) {

@@ -4,6 +4,8 @@ import { assets } from "../../assets/assets";
 import { useAuthContext } from "../../contexts/AuthContext";
 import "../../styles/variables.css";
 import { EyeIcon, EyeSlashIcon } from "@heroicons/react/24/outline";
+import Loader from "../../component/common/Loader";
+import SmallLoader from "../../component/common/SmallLoader";
 
 const Signin = () => {
   const { signIn, isLoading } = useAuthContext();
@@ -38,6 +40,9 @@ const Signin = () => {
     e.preventDefault();
     signIn(formData);
   };
+
+
+  
 
   return (
     <div className="min-h-screen  flex flex-col justify-center items-center px-2">
@@ -102,10 +107,11 @@ const Signin = () => {
           <div className="flex items-center justify-between mb-6">
             <button
               ref={btnRef}
-              className="w-full bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+              className="w-full bg--500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline flex items-center justify-center"
               type="submit"
             >
-              Login
+              <span >Login</span>
+              
             </button>
           </div>
         </form>
