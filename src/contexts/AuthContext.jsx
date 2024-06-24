@@ -47,7 +47,7 @@ const AuthProvider = ({ children }) => {
   // REGISTER USER
   const signUp = async (formData) => {
     setIsLoading(true);
-
+    console.log('loading...');
     try {
       const response = await axios.post(`${apiUrl}/auth/signup`, formData);
       console.log(response);
