@@ -101,7 +101,7 @@ const PopupProvider = ({ children }) => {
 
   };
 
-  const popupLayout = ({status, content} ) => {
+  const PopupLayout = ({status, content} ) => {
 
     return (
       <>
@@ -147,7 +147,7 @@ const PopupProvider = ({ children }) => {
     message,
     closePopup,
     openPopup,
-    popupLayout
+    PopupLayout
   }
 
   return <popupContext.Provider value={value}>{children}</popupContext.Provider>;

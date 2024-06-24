@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./messagemodal.css";
 
 const icons = [
@@ -89,8 +89,18 @@ const MessagesModal = ({ status, content }) => {
   const [message, setMessage] = useState({ content, status });
 
   const closeModal = () => {
-    setMessage({});
+    setMessage({content: '', status: ''});
   };
+
+  useEffect(()=>{
+    if(message.content && message.status){
+      setTimeout(()=>{
+        closeModal()
+      }, 1000 * 5)
+    }
+  }, [message])
+
+
 
   return (
     <>
@@ -108,7 +118,8 @@ const MessagesModal = ({ status, content }) => {
               <h3 className="font-bold capitalize">{status}</h3>
               <p className="text-gray-500">{content}</p>
             </div>
-            <button className="m-auto ">
+            <button className="m-auto " onClick={closeModal}> 
+              
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"

@@ -5,26 +5,30 @@
 
 // src/pages/VerifyEmail.js
 import React from "react";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
 import "./style.css";
 import cryptoJs from "crypto-js";
+import { useAuthContext } from "../../contexts/AuthContext";
+import { useParams } from "react-router-dom";
+import { useEmailContext } from "../../contexts/EmailContext";
 
 const VerifyEmail = () => {
-  const {email} = useParams("email");
+  const { email } = useParams("email");
+  const { user, token } = useAuthContext();
+  const { message, action } = useEmailContext();
 
   const decryptedBytes = cryptoJs.AES.decrypt(
     email,
     import.meta.env.VITE_EMAIL_SECRET
   );
-  
+
   const decryptedEmail = decryptedBytes.toString(cryptoJs.enc.Utf8);
-  console.log(decryptedEmail)
 
   const handleOpenEmail = () => {
     window.location.href = `mailto:${decryptedEmail}`;
   };
 
-
+  if (user && token && !user.isVerified) {
+  }
   return (
     <div className="min-h-screen flex flex-col justify-center items-center px-2">
       <div className="text-center">
@@ -45,7 +49,7 @@ const VerifyEmail = () => {
         </svg>
 
         <p className="text-lg mb-6">
-          Please verify your email to complete the signup process.
+          Please click the link sent to your email to verify your account.
         </p>
         <button
           onClick={handleOpenEmail}

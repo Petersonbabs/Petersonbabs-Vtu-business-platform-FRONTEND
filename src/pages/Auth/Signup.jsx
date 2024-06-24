@@ -2,16 +2,20 @@ import React, { useEffect, useRef, useState } from "react";
 import { NavLink, Link } from "react-router-dom";
 import { useAuthContext } from "../../contexts/AuthContext";
 import { assets } from "../../assets/assets";
+import "../../styles/variables.css";
+
+import { EyeIcon, EyeSlashIcon } from "@heroicons/react/24/outline";
 
 const SignUp = () => {
   const { signUp, isLoading } = useAuthContext();
   const [showPassword, setShowPassword] = useState(false);
+  const [showPassword2, setShowPassword2] = useState(false);
   const btnRef = useRef();
 
   useEffect(() => {
     if (btnRef.current) {
       btnRef.current.disabled = isLoading;
-      btnRef.current.style.background = isLoading ? "gray" : "green";
+      btnRef.current.style.background = isLoading ? "var(--disabled)" : "green";
     }
   }, [isLoading]);
 
@@ -39,8 +43,10 @@ const SignUp = () => {
 
   const togglePasword = () => {
     setShowPassword(!showPassword);
-    console.log(showPassword);
   };
+  const togglePasword2 = () =>{
+    setShowPassword2(!showPassword2)
+  }
 
   return (
     <div className="min-h-screen flex flex-col justify-center items-center px-2">
@@ -61,32 +67,9 @@ const SignUp = () => {
 
           <h2 className="mb-6 mt-0 text-2xl font-bold text-center">Sign Up</h2>
 
-          {/* FULLNAME */}
-          <div className="mb-4 hidden">
-            <label
-              className="hidden block text-sm font-bold mb-2"
-              htmlFor="fullName"
-            >
-              Fullname*
-            </label>
-            <input
-              className="appearance-none border border-gray-600 text-sm rounded w-full py-3 px-4 mb-3 leading-tight focus:outline-none focus:border-green-600"
-              id="fullName"
-              type="text"
-              placeholder="Peterson Babs"
-              value={formData.fullName}
-              onChange={handleChange}
-            />
-          </div>
-          {/* END OF FULLNAME */}
-
           {/* USERNAME */}
           <div className="mb-4">
-          <label
-              className=" block text-sm font-bold mb-2"
-            >
-              Username
-            </label>
+            <label className=" block text-sm font-bold mb-2">Username</label>
             <input
               className="appearance-none text-sm border border-gray-600 rounded w-full py-3 px-4 mb-3 leading-tight focus:outline-none focus:border-green-600"
               id="userName"
@@ -100,10 +83,7 @@ const SignUp = () => {
 
           {/* EMAIL */}
           <div className="mb-4">
-            <label
-              className=" block text-sm font-bold mb-2"
-              htmlFor="email"
-            >
+            <label className=" block text-sm font-bold mb-2" htmlFor="email">
               Email
             </label>
             <input
@@ -117,60 +97,61 @@ const SignUp = () => {
           </div>
           {/* END OF EMAIL */}
 
-          {/* PHONE NUMBER */}
-          <div className="mb-4 hidden">
-            <label
-              className="block text-sm font-bold mb-2"
-              htmlFor="phoneNumber"
-            >
-              Phone*
-            </label>
-            <input
-              className="appearance-none text-sm border border-gray-600 rounded-10 w-full py-3 px-4 mb-3 leading-tight focus:outline-none focus:border-green-600"
-              id="phoneNumber"
-              type="text"
-              placeholder="08012345678"
-              value={formData.phoneNumber}
-              onChange={handleChange}
-            />
-          </div>
-          {/* END OF PHONE NUMBER */}
-
           {/* PASSWORD */}
-          <div className="mb-6">
-          <label
-              className=" block text-sm font-bold mb-2"
-              htmlFor="email"
-            >
+          <div className="mb-5">
+            <label className=" block text-sm font-bold mb-2" htmlFor="password">
               Password
             </label>
-            <input
-              className="appearance-none text-sm border border-gray-600 rounded w-full py-3 px-4 leading-tight focus:outline-none focus:border-green-600"
-              id="password"
-              type="password"
-              placeholder="*********"
-              value={formData.password}
-              onChange={handleChange}
-            />
+            <div className="flex items-center border border-gray-600 px-4 rounded">
+              <input
+                className="appearance-none text-sm  border-gray-600 rounded w-full py-3  leading-tight focus:outline-none focus:border-green-600"
+                id="password"
+                type={showPassword ? "text" : "password"}
+                placeholder="********"
+                value={formData.password}
+                onChange={handleChange}
+              />
+              {showPassword ? (
+                <EyeIcon
+                  className="size-6 cursor-pointer hover:stroke-green-500"
+                  onClick={togglePasword}
+                />
+              ) : (
+                <EyeSlashIcon
+                  className="size-6 cursor-pointer hover:stroke-green-500"
+                  onClick={togglePasword}
+                />
+              )}
+            </div>
           </div>
-          {/* END OF PASSWORD */}
+          {/* END OF PASSWORD  */}
 
           {/* CONFIRM PASSWORD */}
           <div className="mb-5">
-          <label
-              className=" block text-sm font-bold mb-2"
-              htmlFor="email"
-            >
+            <label className=" block text-sm font-bold mb-2" htmlFor="email">
               Confirm password
             </label>
-            <input
-              className="appearance-none text-sm border border-gray-600 rounded w-full py-3 px-4 leading-tight focus:outline-none focus:border-green-600"
-              id="confirmPassword"
-              type="password"
-              placeholder="********"
-              value={formData.confirmPassword}
-              onChange={handleChange}
-            />
+            <div className="flex items-center border border-gray-600 rounded px-4 ">
+              <input
+                className="appearance-none text-sm  border-gray-600 rounded w-full py-3  leading-tight focus:outline-none focus:border-green-600"
+                id="confirmPassword"
+                type={showPassword2 ? "text" : "password"}
+                placeholder="********"
+                value={formData.confirmPassword}
+                onChange={handleChange}
+              />
+              {showPassword2 ? (
+                <EyeIcon
+                  className="size-6 cursor-pointer hover:stroke-green-500 "
+                  onClick={togglePasword2}
+                />
+              ) : (
+                <EyeSlashIcon
+                  className="size-6 cursor-pointer hover:stroke-green-500"
+                  onClick={togglePasword2}
+                />
+              )}
+            </div>
           </div>
           {/* END OF CONFIRM PASSWORD  */}
 
