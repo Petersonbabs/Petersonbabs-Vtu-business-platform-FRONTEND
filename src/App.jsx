@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {
   BrowserRouter as Router,
   Routes,
@@ -29,7 +29,7 @@ import ResetPassword from "./pages/Auth/ResetPassword";
 // localStorage.clear();
 
 function App() {
-  // const {  } = useAuthContext();
+  // const {  } = useContext(AuthContext);
   const [user, setUser] = useState(JSON.parse(localStorage.getItem("user")));
   const [token, setToken] = useState(localStorage.getItem("token"));
 

@@ -23,7 +23,7 @@ import cryptoJs from "crypto-js";
 //   }
 // }
 
-const AuthContext = createContext();
+export const AuthContext = createContext();
 
 export const useAuthContext = () => {
   return useContext(AuthContext);
@@ -52,7 +52,7 @@ const AuthProvider = ({ children }) => {
     try {
       const response = await axios.post(`${apiUrl}/auth/signup`, formData);
       const data = response.data;
-
+      console.log(data.status);
       if (data.status == "success") {
         setUserData(data);
         const encryptedEmail = cryptoJs.AES.encrypt(
