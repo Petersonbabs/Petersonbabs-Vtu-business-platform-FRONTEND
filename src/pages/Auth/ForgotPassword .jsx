@@ -3,6 +3,7 @@ import { Link, NavLink, useNavigate } from "react-router-dom";
 import { assets } from "../../assets/assets";
 import { ChevronLeftIcon } from "@heroicons/react/24/outline";
 import { useAuthContext } from "../../contexts/AuthContext";
+import { Helmet } from "react-helmet";
 
 const ForgotPassword = () => {
   const { forgotPassword, message, setMessage  } = useAuthContext();
@@ -19,7 +20,6 @@ const ForgotPassword = () => {
       ...prevData,
       [id]: value,
     }));
-    console.log(formData);
   };
 
   const handleSubmit = (e) => {
@@ -38,6 +38,9 @@ const ForgotPassword = () => {
 
   return (
     <div className="min-h-screen flex items-center justify-center px-2 md:px-0">
+        <Helmet>
+            <title>NoByll - Forgot Password</title>
+        </Helmet>
       <div className="max-w-md w-full space-y-8">
         <div>
           <NavLink className="flex justify-center items-center" to="/">

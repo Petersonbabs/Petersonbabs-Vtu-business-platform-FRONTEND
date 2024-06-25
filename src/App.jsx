@@ -51,7 +51,7 @@ function App() {
                     element={<VerifyEmail />}
                   />
                   <Route path="/verify/:token" element={<Verify />} />
-                  <Route path="/forgot-password" element={<ForgotPassword />} />
+                  
                   <Route path="/create-pin" element={<CreatePin />} />
                 </Routes>
               </>

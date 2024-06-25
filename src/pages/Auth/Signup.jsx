@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { NavLink, Link, useNavigate } from "react-router-dom";
 import { useAuthContext } from "../../contexts/AuthContext";
 import { assets } from "../../assets/assets";
+import { Helmet } from "react-helmet";
 import "../../styles/variables.css";
 
 import {
@@ -59,6 +60,9 @@ const SignUp = () => {
 
   return (
     <div className="min-h-screen flex flex-col justify-center items-center px-2">
+      <Helmet>
+        <title>NoByll - Signup</title>
+      </Helmet>
       <div className="w-full max-w-md">
         <form
           className="shadow-2xl rounded px-8 pb-8 mb-4 mt-10"
@@ -191,8 +195,6 @@ const SignUp = () => {
             Sign in
           </Link>
         </p>
-
-        
       </div>
     </div>
   );

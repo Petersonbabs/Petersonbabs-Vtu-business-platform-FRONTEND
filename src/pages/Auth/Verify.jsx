@@ -2,9 +2,11 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useEmailContext } from "../../contexts/EmailContext";
 import { useEffect } from "react";
 import { useAuthContext } from "../../contexts/AuthContext";
+import { Helmet } from "react-helmet";
 
 const Verify = () => {
-  const { verifyEmail, requestVerification, isLoading, message, action } = useEmailContext();
+  const { verifyEmail, requestVerification, isLoading, message, action } =
+    useEmailContext();
   const { user } = useAuthContext();
   const { token } = useParams();
 
@@ -28,6 +30,9 @@ const Verify = () => {
 
   return (
     <div className="min-h-screen flex flex-col justify-center items-center bg-green-100">
+      <Helmet>
+        <title>NoByll - Verify Account</title>
+      </Helmet>
       <h1 className="text-4xl font-bold mb-6 px-4 text-center">{message}</h1>
       <button
         onClick={

@@ -1,21 +1,15 @@
-import React, { useRef, useState } from 'react';
-import { NavLink } from 'react-router-dom';
-import image from "../../assets/logoA. removebg-preview (1).png"
-import { assets } from '../../assets/assets';
-
+import React, { useRef, useState } from "react";
+import { NavLink } from "react-router-dom";
+import { assets } from "../../assets/assets";
+import { Helmet } from "react-helmet";
 
 const CreatePin = () => {
-  const pinInputRefs = [
-    useRef(null),
-    useRef(null),
-    useRef(null),
-    useRef(null)
-  ];
-  const [pin, setPin] = useState(['', '', '', '']);
+  const pinInputRefs = [useRef(null), useRef(null), useRef(null), useRef(null)];
+  const [pin, setPin] = useState(["", "", "", ""]);
 
   const handlePinChange = (digit, index) => {
     const newPin = [...pin];
-    newPin[index] = digit.slice(-1); 
+    newPin[index] = digit.slice(-1);
     setPin(newPin);
 
     if (digit && index < pinInputRefs.length - 1) {
@@ -25,10 +19,17 @@ const CreatePin = () => {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg px-5 md:px-0">
+      <Helmet>
+        <title>NoByll - Create pin</title>
+      </Helmet>
       <div className="max-w-md w-full space-y-8">
         <div>
           <NavLink className="flex justify-center items-center" to="/">
-            <img src={assets.NoByllLogoTransparent} alt="NoByll Logo" className="w-32 h-32" />
+            <img
+              src={assets.NoByllLogoTransparent}
+              alt="NoByll Logo"
+              className="w-32 h-32"
+            />
           </NavLink>
           <h2 className="text-center text-3xl font-extrabold text">
             Create a PIN

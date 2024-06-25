@@ -4,6 +4,7 @@ import { NavLink, useParams } from "react-router-dom";
 import { assets } from "../../assets/assets";
 import { EyeIcon, EyeSlashIcon } from "@heroicons/react/24/outline";
 import { useAuthContext } from "../../contexts/AuthContext";
+import { Helmet } from "react-helmet";
 
 const ResetPassword = () => {
   const { linkValidity, invalidateLink, resetPassword, isLoading } =
@@ -72,6 +73,9 @@ const ResetPassword = () => {
 
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-100">
+        <Helmet>
+            <title>Nobyll - Reset password</title>
+        </Helmet>
       <div className="w-full max-w-md p-8 space-y-6 bg-white rounded-lg shadow-md">
         <NavLink className="flex justify-center items-center" to="/">
           <img

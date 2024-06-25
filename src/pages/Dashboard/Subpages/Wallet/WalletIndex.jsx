@@ -1,8 +1,12 @@
-import React from 'react'
+import { Helmet } from "react-helmet"
+
 
 const WalletIndex = () => {
   return (
     <div>
+      <Helmet>
+        <title>NoByll - Wallet</title>
+      </Helmet>
       <h1 className="text-5" style={{ fontSize: "1.5rem" }}>
         Wallet
       </h1>

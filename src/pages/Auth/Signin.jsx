@@ -3,9 +3,12 @@ import { Link, NavLink, useNavigate } from "react-router-dom";
 import { assets } from "../../assets/assets";
 import { useAuthContext } from "../../contexts/AuthContext";
 import "../../styles/variables.css";
-import { ChevronLeftIcon, EyeIcon, EyeSlashIcon } from "@heroicons/react/24/outline";
-import Loader from "../../component/common/Loader";
-import SmallLoader from "../../component/common/SmallLoader";
+import {
+  ChevronLeftIcon,
+  EyeIcon,
+  EyeSlashIcon,
+} from "@heroicons/react/24/outline";
+import { Helmet } from "react-helmet";
 
 const Signin = () => {
   const { signIn, isLoading } = useAuthContext();
@@ -46,11 +49,11 @@ const Signin = () => {
     signIn(formData);
   };
 
-
-  
-
   return (
     <div className="min-h-screen  flex flex-col justify-center items-center px-2">
+      <Helmet>
+        <title>NoByll - Signin</title>
+      </Helmet>
       <div className="w-full max-w-md">
         <form
           className="shadow-lg rounded px-8  pb-8 mb-4"
@@ -115,8 +118,7 @@ const Signin = () => {
               className="w-full bg--500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline flex items-center justify-center"
               type="submit"
             >
-              <span >Login</span>
-              
+              <span>Login</span>
             </button>
           </div>
         </form>

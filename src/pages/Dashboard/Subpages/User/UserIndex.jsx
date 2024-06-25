@@ -1,8 +1,12 @@
-import React from 'react'
+import { Helmet } from "react-helmet"
+
 
 const UserIndex = () => {
   return (
     <div>
+      <Helmet>
+        <title>NoByll - My Account</title>
+      </Helmet>
       <h1 className="text-5" style={{ fontSize: "1.5rem" }}>
         Profile settings
       </h1>

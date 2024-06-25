@@ -1,8 +1,12 @@
-import React from "react";
+import { Helmet } from "react-helmet";
+
 
 const ServicesIndex = () => {
   return (
     <div>
+      <Helmet>
+        <title>NoByll - Services</title>
+      </Helmet>
       <h1 className="text-5" style={{ fontSize: "1.5rem" }}>
         Services
       </h1>

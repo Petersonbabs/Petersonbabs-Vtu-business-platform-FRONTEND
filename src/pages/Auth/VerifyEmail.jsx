@@ -1,15 +1,10 @@
-// User must be authenticated to see this page
-// If !verified => Request for verification
-// If verified => Verified message and redirect to dashboard
-// If invalid verification => error message and request verification button
-
-// src/pages/VerifyEmail.js
 import React from "react";
 import "./style.css";
 import cryptoJs from "crypto-js";
 import { useAuthContext } from "../../contexts/AuthContext";
 import { useParams } from "react-router-dom";
 import { useEmailContext } from "../../contexts/EmailContext";
+import { Helmet } from "react-helmet";
 
 const VerifyEmail = () => {
   const { email } = useParams("email");
@@ -31,6 +26,9 @@ const VerifyEmail = () => {
   }
   return (
     <div className="min-h-screen flex flex-col justify-center items-center px-2">
+      <Helmet>
+        <title>NoByll - Verify Email</title>
+      </Helmet>
       <div className="text-center">
         <h1 className="text-4xl font-bold mb-4">One last thing...</h1>
         <svg
