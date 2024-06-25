@@ -1,10 +1,6 @@
 import React from 'react';
 import "../../src/App.css";
 import { Link } from 'react-router-dom';
-import dataImage from '../../src/assets/data.jpg';
-import airtimeImage from '../../src/assets/airtime.jpg';
-import bulksmsImage from '../../src/assets/bulksms.jpg';
-import paybillsImage from '../../src/assets/paybills.jpg';
 
 const FeatureCard = ({ image, title, description }) => {
     return (
@@ -19,22 +15,18 @@ const FeatureCard = ({ image, title, description }) => {
 const Features = () => {
     const featureData = [
         {
-            image: dataImage,
             title: 'Buy cheap Data Online',
             description: 'Buy cheap mobile data at an affordable rate.',
         },
         {
-            image: airtimeImage,
             title: 'Buy Airtime',
             description: 'Get up to 5% discount instantly when you purchase airtime.',
         },
         {
-            image: bulksmsImage,
             title: 'Send Bulk SMS',
             description: 'Send BulkSMS to any DND number. Fast and instant delivery.',
         },
         {
-            image: paybillsImage,
             title: 'Cable TV, Subscriptions',
             description: 'Pay Cable TV bills at home and make commission.',
         }

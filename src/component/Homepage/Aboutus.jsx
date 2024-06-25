@@ -1,5 +1,3 @@
-import React from 'react';
-import serviceImage from '../../assets/about.jpg';
 import "../../App.css";
 import { Link } from 'react-router-dom';
 

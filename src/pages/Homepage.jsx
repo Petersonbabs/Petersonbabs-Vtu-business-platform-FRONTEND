@@ -1,9 +1,5 @@
 import React, { useRef } from "react";
-import Header from "../component/layout/Header";
 import Hero from "../component/Homepage/Hero";
-import Features from "../component/Features";
-import MakeMoney from "../component/MakeMoney";
-import Aboutus from "../component/Homepage/Aboutus";
 import Service from "../component/Service";
 import Footer from "../component/layout/Footer";
 import ScrollToTopButton from "../component/ScrollToTopButton ";

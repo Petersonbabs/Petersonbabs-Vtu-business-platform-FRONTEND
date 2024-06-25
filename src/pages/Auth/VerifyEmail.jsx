@@ -22,8 +22,9 @@ const VerifyEmail = () => {
     window.location.href = `mailto:${decryptedEmail}`;
   };
 
-  if (user && token && !user.isVerified) {
-  }
+  
+
+  
   return (
     <div className="min-h-screen flex flex-col justify-center items-center px-2">
       <Helmet>

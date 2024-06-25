@@ -1,26 +1,35 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 import { useAuthContext } from "../../contexts/AuthContext";
+import axios from "axios";
 
 const ProtectedRoutes = () => {
   const { token } = useAuthContext();
-  console.log(token);
-  const navigate = useNavigate();
 
-  const isAuthenticated = () => {
-    if (!token) {
-      return false;
-    }
-    return true;
-  };
+  const navigate = useNavigate();
   
   useEffect(() => {
-    console.log('verifyn..')
-    if (!isAuthenticated()) {
+    if (!token) {
       navigate("/signin");
-      alert('Please login')
+      alert("please sign in");
+    } else if (token) {
+      verifyToken();
     }
-  });
+  }, []);
+  const apiUrl = import.meta.env.VITE_apiUrl;
+
+  const verifyToken = async () => {
+    try {
+      const response = await axios.post(`${apiUrl}/auth/verify-token`, {
+        token,
+      });
+    } catch (error) {
+      if (error) {
+        navigate("/signin");
+      }
+      console.log(error);
+    }
+  };
 
   return <Outlet />;
 };
