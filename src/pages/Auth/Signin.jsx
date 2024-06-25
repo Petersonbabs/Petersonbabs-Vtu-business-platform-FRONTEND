@@ -1,9 +1,9 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { assets } from "../../assets/assets";
 import { useAuthContext } from "../../contexts/AuthContext";
 import "../../styles/variables.css";
-import { EyeIcon, EyeSlashIcon } from "@heroicons/react/24/outline";
+import { ChevronLeftIcon, EyeIcon, EyeSlashIcon } from "@heroicons/react/24/outline";
 import Loader from "../../component/common/Loader";
 import SmallLoader from "../../component/common/SmallLoader";
 
@@ -11,6 +11,7 @@ const Signin = () => {
   const { signIn, isLoading } = useAuthContext();
   const [showPassword, setShowPassword] = useState(false);
   const btnRef = useRef();
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (btnRef.current) {
@@ -30,6 +31,10 @@ const Signin = () => {
       ...prevData,
       [id]: value,
     }));
+  };
+
+  const handleGoBack = () => {
+    navigate(-1);
   };
 
   const togglePasword = () => {
@@ -115,6 +120,16 @@ const Signin = () => {
             </button>
           </div>
         </form>
+
+        <div className="text-sm mb-8">
+          <button
+            onClick={handleGoBack}
+            className="font-medium text-green-500 hover:text-green-400 flex items-center gap-1 w-fit"
+          >
+            <ChevronLeftIcon className="size-4" />
+            <span>Back </span>
+          </button>
+        </div>
 
         <p className="text-center text-xs">
           <span>Don’t have an account?</span>{" "}

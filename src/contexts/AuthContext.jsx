@@ -33,7 +33,9 @@ const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(JSON.parse(localStorage.getItem("user")));
   const [token, setToken] = useState(localStorage.getItem("token"));
   const [isLoading, setIsLoading] = useState(false);
+  const [message, setMessage] = useState('')
   const navigate = useNavigate();
+  const [linkValidity, setLinkValidity] = useState();
 
   const setUserData = (data) => {
     localStorage.setItem("token", data.token);
@@ -47,16 +49,13 @@ const AuthProvider = ({ children }) => {
   // REGISTER USER
   const signUp = async (formData) => {
     setIsLoading(true);
-    console.log('loading...');
     try {
       const response = await axios.post(`${apiUrl}/auth/signup`, formData);
-      console.log(response);
       const data = response.data;
 
       if (data.status == "success") {
 
         setUserData(data);
-        console.log(import.meta.env.VITE_EMAIL_SECRET);
         const encryptedEmail = cryptoJs.AES.encrypt(
           formData.email,
           import.meta.env.VITE_EMAIL_SECRET
@@ -127,6 +126,7 @@ const AuthProvider = ({ children }) => {
   // FORGOT PASSWORD
   const forgotPassword = async (formData) => {
     setIsLoading(true);
+    console.log('loading...');
     try {
       const response = await axios.post(
         `${apiUrl}/auth/forgot-password`,
@@ -134,33 +134,62 @@ const AuthProvider = ({ children }) => {
       );
       const data = response.data;
       if (data.status == "success") {
+        setMessage(data.message)
       }
     } catch (error) {
       console.log(error);
-      alert(error.response.data.message);
+      setMessage(error.response.data.message)
     } finally {
       console.log("done");
       setIsLoading(false);
     }
   };
 
-  // RESET PASSWORD
-  const resetPassword = async (email) => {
-    setIsLoading(true);
+  // INVALIDATE PASSWORD LINK ONCE CLICKED
+  const invalidateLink = async (passwordToken) => {
+    
     try {
-      const response = await axios.post(
-        `${apiUrl}/auth/change-password`,
-        email
+      const response = await axios.post(`${apiUrl}/auth/check-link`, {
+        passwordToken,
+      });
+      const data = await response.data;
+      
+      if (data.status == "success") {
+        setLinkValidity(true)
+        
+      }
+    } catch (error) {
+      console.log(error.response.data.message);
+      if (error.response.data.status == "invalid link") {
+        setLinkValidity(false)
+      }
+    } finally {
+      console.log("done");
+    }
+  };
+
+  // RESET PASSWORD
+  const resetPassword = async (newPassword, confirmPassword, passwordToken) => {
+    setIsLoading(true);
+    console.log('loading.');
+    try {
+      const response = await axios.patch(
+        `${apiUrl}/auth/reset-password`,
+        {newPassword, confirmPassword, passwordToken}
       );
+      console.log(response);
       const data = await response.data;
       if (data.status == "success") {
         alert(data.message);
+        navigate('/signin')
+        window.location.reload()
       }
     } catch (error) {
       console.log(error.response.data.message);
       alert(error.response.data.message);
     } finally {
       setIsLoading(false);
+      console.log(isLoading);
       console.log("done!");
     }
   };
@@ -172,8 +201,12 @@ const AuthProvider = ({ children }) => {
     signIn,
     logout,
     forgotPassword,
+    invalidateLink,
+    linkValidity,
     resetPassword,
     token,
+    message,
+    setMessage
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

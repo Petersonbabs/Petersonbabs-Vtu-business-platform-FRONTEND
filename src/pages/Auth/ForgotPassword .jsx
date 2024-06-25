@@ -1,15 +1,17 @@
-import React, { useState } from "react";
-import { Link, NavLink } from "react-router-dom";
+import React, { useRef, useState } from "react";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { assets } from "../../assets/assets";
 import { ChevronLeftIcon } from "@heroicons/react/24/outline";
 import { useAuthContext } from "../../contexts/AuthContext";
 
 const ForgotPassword = () => {
-  const { forgotPassword } = useAuthContext();
+  const { forgotPassword, message, setMessage  } = useAuthContext();
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
+  const navigate = useNavigate();
+  const emailRef = useRef()
 
   const handleChange = (e) => {
     const { id, value } = e.target;
@@ -23,7 +25,16 @@ const ForgotPassword = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     forgotPassword(formData);
+    email.value = ''
+    setMessage('')
   };
+
+  
+
+  const handleGoBack = () => {
+    navigate(-1); // Navigate to the previous page
+  };
+
 
   return (
     <div className="min-h-screen flex items-center justify-center px-2 md:px-0">
@@ -43,14 +54,16 @@ const ForgotPassword = () => {
             Enter your email below to receive your password reset instructions.
           </p>
         </div>
-        <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
+        <p className="text-gray-700 px-2 font-sm text-center">{message}</p>
+        <form className="space-y-6" onSubmit={handleSubmit}>
           {/* <input type="hidden" name="remember" value="true" /> */}
-          <div className="rounded-md shadow-sm -space-y-px">
+          <div className="rounded-md shadow-sm">
             <div>
               <input
                 id="email"
                 name="email"
                 type="email"
+                ref={emailRef}
                 onChange={handleChange}
                 autoComplete="email"
                 required
@@ -70,13 +83,13 @@ const ForgotPassword = () => {
           </div>
         </form>
         <div className="text-sm">
-          <Link
-            to="/signin"
+          <button
+            onClick={handleGoBack}
             className="font-medium text-green-500 hover:text-green-400 flex items-center gap-1 w-fit"
           >
             <ChevronLeftIcon className="size-4" />
-            <span>Back to login</span>
-          </Link>
+            <span>Back </span>
+          </button>
         </div>
       </div>
     </div>

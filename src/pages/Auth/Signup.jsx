@@ -1,16 +1,21 @@
 import React, { useEffect, useRef, useState } from "react";
-import { NavLink, Link } from "react-router-dom";
+import { NavLink, Link, useNavigate } from "react-router-dom";
 import { useAuthContext } from "../../contexts/AuthContext";
 import { assets } from "../../assets/assets";
 import "../../styles/variables.css";
 
-import { EyeIcon, EyeSlashIcon } from "@heroicons/react/24/outline";
+import {
+  ChevronLeftIcon,
+  EyeIcon,
+  EyeSlashIcon,
+} from "@heroicons/react/24/outline";
 
 const SignUp = () => {
   const { signUp, isLoading } = useAuthContext();
   const [showPassword, setShowPassword] = useState(false);
   const [showPassword2, setShowPassword2] = useState(false);
   const btnRef = useRef();
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (btnRef.current) {
@@ -41,12 +46,16 @@ const SignUp = () => {
     signUp(formData);
   };
 
+  const handleGoBack = () => {
+    navigate(-1);
+  };
+
   const togglePasword = () => {
     setShowPassword(!showPassword);
   };
-  const togglePasword2 = () =>{
-    setShowPassword2(!showPassword2)
-  }
+  const togglePasword2 = () => {
+    setShowPassword2(!showPassword2);
+  };
 
   return (
     <div className="min-h-screen flex flex-col justify-center items-center px-2">
@@ -165,12 +174,25 @@ const SignUp = () => {
             </button>
           </div>
         </form>
-        <p className="text-center text-xs mb-10">
+
+        <div className="text-sm mb-8">
+          <button
+            onClick={handleGoBack}
+            className="font-medium text-green-500 hover:text-green-400 flex items-center gap-1 w-fit"
+          >
+            <ChevronLeftIcon className="size-4" />
+            <span>Back </span>
+          </button>
+        </div>
+
+        <p className="text-center text-sm mb-10">
           Already have an account?{" "}
-          <Link to="/signin" className="text-blue-500 hover:text-blue-300">
+          <Link to="/signin" className="text-green-500 hover:text-green-300">
             Sign in
           </Link>
         </p>
+
+        
       </div>
     </div>
   );
