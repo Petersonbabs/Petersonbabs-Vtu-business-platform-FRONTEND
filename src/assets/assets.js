@@ -4,6 +4,7 @@ import bg1 from './bg-1.png'
 import userImage from './user-icon.png' 
 import emailGifIcon from './icons8-email.gif' 
 import Loader from './loader.svg'
+import mtnLogo from './MTN-logo-.png'
 
 export const assets = {
     NoByllLogo,
@@ -11,5 +12,6 @@ export const assets = {
     bg1,
     userImage,
     emailGifIcon,
-    Loader
+    Loader,
+    mtnLogo
 }

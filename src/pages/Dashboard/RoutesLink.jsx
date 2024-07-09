@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Routes, Route } from "react-router-dom";
-import VerticalNavbar from "./Components/VarticalNavbar";
+import VerticalNavbar from "./Components/VerticalNavbar";
 import DashboardNav from "./Components/Nav";
 import StickyMenu from "../../component/layout/StickyMobileMenu";
 import "./dashboard.css";
@@ -11,10 +11,7 @@ import DashboardIndex from "./Subpages/Index/DashboardIndex";
 import ServicesIndex from "./Subpages/Services/ServicesIndex";
 import WalletIndex from "./Subpages/Wallet/WalletIndex";
 import UserIndex from "./Subpages/User/UserIndex";
-import Verify from "../Auth/Verify";
-import VerifyEmail from "../Auth/VerifyEmail";
-import ForgotPassword from "../Auth/ForgotPassword ";
-import CreatePin from "../Auth/CreatePin";
+
 
 const RoutesLink = () => {
   const [isNavbarOpen, setIsNavbarOpen] = useState(true);
@@ -24,7 +21,7 @@ const RoutesLink = () => {
   };
 
   return (
-    <div className="flex flex-col h-screen pb-10 border-slate-100">
+    <div className="flex flex-col h-screen pb-10 md:pb-0 border-slate-100">
       <DashboardNav />
       <div className="flex flex-1 overflow-hidden">
         <VerticalNavbar isOpen={isNavbarOpen} toggleNavbar={toggleNavbar} />

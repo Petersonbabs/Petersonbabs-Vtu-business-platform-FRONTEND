@@ -1,14 +1,18 @@
 import { Helmet } from "react-helmet";
+import Summary from "./Summary";
+import Shortcuts from "./Shortcuts";
+import Transactions from "./Transactions";
 
 const DashboardIndex = () => {
   return (
-    <div>
-      <Helmet>
+    <div className="space-y-4">
+        <Helmet>
         <title>NoByll - Dashboard</title>
       </Helmet>
-      <h1 className="font-xl" style={{ fontSize: "3.5rem" }}>
-        Dashboard
-      </h1>
+
+      <Summary />
+      <Shortcuts gridCol={4}/>
+      <Transactions />
     </div>
   );
 };
